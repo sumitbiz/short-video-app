@@ -1,9 +1,10 @@
-// src/app/page.tsx
+import MediaList from '@/components/MediaList';
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen items-center justify-center">
-      <h1 className="text-3xl font-bold">Welcome to Short Video App 🚀</h1>
+    <main className="min-h-screen bg-gray-100">
+      <h1 className="text-2xl font-bold text-center p-4">Uploaded Media</h1>
+      <MediaList />
     </main>
   );
 }

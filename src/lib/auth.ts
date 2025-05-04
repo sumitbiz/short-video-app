@@ -1,18 +1,22 @@
-// src/lib/auth.ts
-
-import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { NextAuthOptions } from "next-auth";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
   pages: {
-    signIn: "/auth/signin", // Customize your sign-in page
+    signIn: '/auth/signin',
+  },
+  callbacks: {
+    async redirect({ url, baseUrl }) {
+      return `${baseUrl}/dashboard`;
+    },
   },
 };
-
-export default NextAuth(authOptions);
